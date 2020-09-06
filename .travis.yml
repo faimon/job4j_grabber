@@ -6,7 +6,7 @@ jdk:
 sudo: false
 env:
   global:
-    - CODECOV_TOKEN="0da95c95-286a-4c0f-a2a3-8c3fa8e46d49"
+    - CODECOV_TOKEN="b26a23c0-01ce-491d-836e-107c997ac81d"
 # после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
 # Здесь используется сторонни сервис https://codecov.io/
 after_success:
