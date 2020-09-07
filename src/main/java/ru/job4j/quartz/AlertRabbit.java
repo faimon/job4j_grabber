@@ -6,6 +6,8 @@ import org.quartz.impl.StdSchedulerFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
@@ -18,13 +20,12 @@ public class AlertRabbit {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             JobDetail job = newJob(Rabbit.class).build();
-            String path = "src/main/resources/rabbit.properties";
+            Properties config = new Properties();
+            String path = "rabbit.properties";
             int time = -1;
-            try (BufferedReader in = new BufferedReader(new FileReader(path))) {
-                String[] properties = in.readLine().split("=");
-                if (properties.length == 2) {
-                    time = Integer.parseInt(properties[1]);
-                }
+            try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream(path)) {
+                config.load(in);
+                time = Integer.parseInt(config.getProperty("rabbit.interval"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
