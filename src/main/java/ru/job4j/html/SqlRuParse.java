@@ -4,25 +4,27 @@ package ru.job4j.html;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import ru.job4j.grabber.Post;
+
+import java.io.IOException;
 
 public class SqlRuParse {
-    public static void main(String[] args) throws Exception {
-        for (int i = 1; i < 6; i++) {
-            Document doc = Jsoup
-                    .connect("https://www.sql.ru/forum/job-offers/" + Integer.toString(i)).get();
-            Elements rows = doc.select(".postslisttopic");
-            Elements date = doc.select(".altCol");
-            for (Element td : rows) {
-                Element href = td.child(1);
-                System.out.println(href.attr("href"));
-                System.out.println(href.text());
-            }
-            for (Element createdDate: date) {
-                if (createdDate.hasAttr("style")) {
-                    System.out.println(createdDate.text());
-                }
-            }
-        }
+    public Post loadDescriptionFromUrl(String url) throws IOException {
+        Post post = new Post();
+        Document doc = Jsoup.connect(url).get();
+        Element topic = doc.getElementsByClass("messageHeader").first();
+        Element description = doc.getElementsByClass("msgBody").get(1);
+        Element createdDate = doc.getElementsByClass("msgFooter").first();
+        post.setTopic(topic.text());
+        post.setDescription(description.text());
+        post.setUrl(url);
+        post.setCreateDate(ParseDate.convertToCalendarFormat(createdDate.text()));
+        return post;
+    }
+
+    public static void main(String[] args) throws IOException {
+        SqlRuParse sqlRuParse = new SqlRuParse();
+        Post post = sqlRuParse.loadDescriptionFromUrl("https://www.sql.ru/forum/1328685/vakansiya-oracle-dba");
+        System.out.println(post);
     }
 }

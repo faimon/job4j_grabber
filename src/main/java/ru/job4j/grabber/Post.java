@@ -39,4 +39,13 @@ public class Post {
     public void setCreateDate(Calendar createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "Post "
+                + "topic = '" + topic + System.lineSeparator()
+                + "description = '" + description + System.lineSeparator()
+                + "url = '" + url + System.lineSeparator()
+                + "createDate = " + createDate.getTime();
+    }
 }
