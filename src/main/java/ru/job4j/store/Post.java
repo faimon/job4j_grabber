@@ -1,4 +1,4 @@
-package ru.job4j.grabber;
+package ru.job4j.store;
 
 import java.util.Calendar;
 
@@ -43,9 +43,9 @@ public class Post {
     @Override
     public String toString() {
         return "Post "
-                + "topic = '" + topic + System.lineSeparator()
-                + "description = '" + description + System.lineSeparator()
+                + "topic = " + topic + System.lineSeparator()
+                + "description = " + description + System.lineSeparator()
                 + "url = " + url + System.lineSeparator()
-                + "createDate = " + createDate.getTime();
+                + "createDate = " + createDate.getTime() + System.lineSeparator();
     }
 }
