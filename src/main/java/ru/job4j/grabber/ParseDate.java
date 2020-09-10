@@ -47,7 +47,7 @@ public class ParseDate {
 
         int day = Integer.parseInt(in[0]);
         int month = MONTHS.get(in[1]);
-        int year = Integer.parseInt(in[2]);
+        int year = Integer.parseInt(in[2]) + 2000;
         int hour = Integer.parseInt(in[3].split(":")[0]);
         int minutes = Integer.parseInt(in[3].split(":")[1]);
         calendar.set(year, month, day, hour, minutes);

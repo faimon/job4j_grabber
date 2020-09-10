@@ -8,6 +8,15 @@ public class Post {
     private String url;
     private Calendar createDate;
 
+    public Post() {}
+
+    public Post(String topic, String description, String url, Calendar createDate) {
+        this.topic = topic;
+        this.description = description;
+        this.url = url;
+        this.createDate = createDate;
+    }
+
     public String getTopic() {
         return topic;
     }
