@@ -24,27 +24,4 @@ public class ParseDateTest {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         assertThat(simpleDateFormat.format(date.getTime()), is("23/07/20, 20:55"));
     }
-
-    @Test
-    public void whenOtherDate2() {
-        String line = "сегодня, 10:56";
-        Calendar date = ParseDate.convertToCalendarFormat(line);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MM/yy, k:mm");
-        Calendar currentDate = Calendar.getInstance();
-        currentDate.set(Calendar.HOUR_OF_DAY, 10);
-        currentDate.set(Calendar.MINUTE, 56);
-        assertThat(simpleDateFormat.format(date.getTime()), is(simpleDateFormat.format(currentDate.getTime())));
-    }
-
-    @Test
-    public void whenOtherDate3() {
-        String line = "вчера, 10:56";
-        Calendar date = ParseDate.convertToCalendarFormat(line);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MM/yy, k:mm");
-        Calendar currentDate = Calendar.getInstance();
-        currentDate.set(Calendar.DAY_OF_MONTH, currentDate.get(Calendar.DAY_OF_MONTH) - 1);
-        currentDate.set(Calendar.HOUR_OF_DAY, 10);
-        currentDate.set(Calendar.MINUTE, 56);
-        assertThat(simpleDateFormat.format(date.getTime()), is(simpleDateFormat.format(currentDate.getTime())));
-    }
 }
