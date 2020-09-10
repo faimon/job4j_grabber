@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -30,8 +29,8 @@ public class ParseDateTest {
     public void whenOtherDate2() {
         String line = "сегодня, 10:56";
         Calendar date = ParseDate.convertToCalendarFormat(line);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        Calendar currentDate = Calendar.getInstance(Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MM/yy, k:mm");
+        Calendar currentDate = Calendar.getInstance();
         currentDate.set(Calendar.HOUR_OF_DAY, 10);
         currentDate.set(Calendar.MINUTE, 56);
         assertThat(simpleDateFormat.format(date.getTime()), is(simpleDateFormat.format(currentDate.getTime())));
@@ -41,8 +40,8 @@ public class ParseDateTest {
     public void whenOtherDate3() {
         String line = "вчера, 10:56";
         Calendar date = ParseDate.convertToCalendarFormat(line);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        Calendar currentDate = Calendar.getInstance(Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d/MM/yy, k:mm");
+        Calendar currentDate = Calendar.getInstance();
         currentDate.set(Calendar.DAY_OF_MONTH, currentDate.get(Calendar.DAY_OF_MONTH) - 1);
         currentDate.set(Calendar.HOUR_OF_DAY, 10);
         currentDate.set(Calendar.MINUTE, 56);
