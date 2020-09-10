@@ -45,7 +45,7 @@ public class Post {
         return "Post "
                 + "topic = '" + topic + System.lineSeparator()
                 + "description = '" + description + System.lineSeparator()
-                + "url = '" + url + System.lineSeparator()
+                + "url = " + url + System.lineSeparator()
                 + "createDate = " + createDate.getTime();
     }
 }

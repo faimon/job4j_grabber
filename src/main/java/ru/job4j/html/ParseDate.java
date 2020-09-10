@@ -24,10 +24,6 @@ public class ParseDate {
         MONTHS.put("дек", Calendar.DECEMBER);
     }
 
-    public static int parseMonth(String line) {
-        return MONTHS.get(line);
-    }
-
     public static Calendar convertToCalendarFormat(String line) {
         Calendar calendar = Calendar.getInstance();
         String input = line.replace(",", "");
@@ -48,8 +44,9 @@ public class ParseDate {
             calendar.set(Calendar.MINUTE, minutes);
             return calendar;
         }
+
         int day = Integer.parseInt(in[0]);
-        int month = parseMonth(in[1]);
+        int month = MONTHS.get(in[1]);
         int year = Integer.parseInt(in[2]);
         int hour = Integer.parseInt(in[3].split(":")[0]);
         int minutes = Integer.parseInt(in[3].split(":")[1]);
