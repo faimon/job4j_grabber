@@ -1,46 +1,28 @@
 package ru.job4j.html;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DateFactory {
+    private static final Map<String, Integer> MONTHS = new HashMap<>();
+
+    static {
+        MONTHS.put("янв", Calendar.JANUARY);
+        MONTHS.put("фев", Calendar.FEBRUARY);
+        MONTHS.put("мар", Calendar.MARCH);
+        MONTHS.put("апр", Calendar.APRIL);
+        MONTHS.put("май", Calendar.MAY);
+        MONTHS.put("июн", Calendar.JUNE);
+        MONTHS.put("июл", Calendar.JULY);
+        MONTHS.put("авг", Calendar.AUGUST);
+        MONTHS.put("сен", Calendar.SEPTEMBER);
+        MONTHS.put("окт", Calendar.OCTOBER);
+        MONTHS.put("ноя", Calendar.NOVEMBER);
+        MONTHS.put("дек", Calendar.DECEMBER);
+    }
+
     public static int parseMonth(String line) {
-        int month = -1;
-        if (line.equals("янв")) {
-            month = Calendar.JANUARY;
-        }
-        if (line.equals("фев")) {
-            month = Calendar.FEBRUARY;
-        }
-        if (line.equals("мар")) {
-            month = Calendar.MARCH;
-        }
-        if (line.equals("апр")) {
-            month = Calendar.APRIL;
-        }
-        if (line.equals("май")) {
-            month = Calendar.MAY;
-        }
-        if (line.equals("июн")) {
-            month = Calendar.JUNE;
-        }
-        if (line.equals("июл")) {
-            month = Calendar.JULY;
-        }
-        if (line.equals("авг")) {
-            month = Calendar.AUGUST;
-        }
-        if (line.equals("сен")) {
-            month = Calendar.SEPTEMBER;
-        }
-        if (line.equals("окт")) {
-            month = Calendar.OCTOBER;
-        }
-        if (line.equals("ноя")) {
-            month = Calendar.NOVEMBER;
-        }
-        if (line.equals("дек")) {
-            month = Calendar.DECEMBER;
-        }
-        return month;
+        return MONTHS.get(line);
     }
 }
