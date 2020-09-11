@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.grabber.SqlRuParse;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
@@ -95,7 +94,7 @@ public class PsqlStore implements Store, AutoCloseable {
     public static void main(String[] args) {
         Properties cfg = new Properties();
         try (InputStream in = PsqlStore.class
-                .getClassLoader().getResourceAsStream("rabbit.properties")) {
+                .getClassLoader().getResourceAsStream("app.properties")) {
             cfg.load(in);
             PsqlStore store = new PsqlStore(cfg);
             SqlRuParse parse = new SqlRuParse();

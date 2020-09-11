@@ -24,7 +24,7 @@ public class AlertRabbit {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             try (InputStream in = AlertRabbit.class
-                    .getClassLoader().getResourceAsStream("rabbit.properties")) {
+                    .getClassLoader().getResourceAsStream("app.properties")) {
                 config.load(in);
                 conn = DriverManager.getConnection(config.getProperty("url"),
                         config.getProperty("username"),
